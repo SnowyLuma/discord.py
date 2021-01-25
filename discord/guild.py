@@ -107,6 +107,23 @@ class Guild(Hashable):
         .. note::
 
             This attribute is only available via :meth:`.Client.fetch_guild`.
+    approximate_member_count: Optional[:class:`int`]
+        The approximate number of members in the guild.
+
+        .. note::
+
+            This attribute is only available via :meth:`.Client.fetch_guild`.
+
+        .. versionadded:: 1.7
+    approximate_presence_count: Optional[:class:`int`]
+        The approximate number of members currently active in the guild.
+        This includes idle, dnd, online, and invisible members. Offline members are excluded.
+
+        .. note::
+
+            This attribute is only available via :meth:`.Client.fetch_guild`.
+
+        .. versionadded:: 1.7
     max_video_channel_users: Optional[:class:`int`]
         The maximum amount of users in a video channel.
 
@@ -169,7 +186,8 @@ class Guild(Hashable):
                  'owner_id', 'mfa_level', 'emojis', 'features',
                  'verification_level', 'explicit_content_filter', 'splash',
                  '_voice_states', '_system_channel_id', 'default_notifications',
-                 'description', 'max_presences', 'max_members', 'max_video_channel_users',
+                 'description', 'max_presences', 'max_members', 'approximate_member_count',
+                 'approximate_presence_count', 'max_video_channel_users',
                  'premium_tier', 'premium_subscription_count', '_system_channel_flags',
                  'preferred_locale', 'discovery_splash', '_rules_channel_id',
                  '_public_updates_channel_id')
@@ -296,6 +314,8 @@ class Guild(Hashable):
         self.description = guild.get('description')
         self.max_presences = guild.get('max_presences')
         self.max_members = guild.get('max_members')
+        self.approximate_member_count = guild.get('approximate_member_count')
+        self.approximate_presence_count = guild.get('approximate_presence_count')
         self.max_video_channel_users = guild.get('max_video_channel_users')
         self.premium_tier = guild.get('premium_tier', 0)
         self.premium_subscription_count = guild.get('premium_subscription_count') or 0
